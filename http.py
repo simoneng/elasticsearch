@@ -46,11 +46,8 @@ def serve(host='0.0.0.0', port=5656, verbosity=1):
 
             request_time = datetime.datetime.now().ctime()
             
-            if verbosity > 0:
-                print(' - '.join([client_address[0], request_time, request['header']['request-line']]))  
-            #raw_decoded = request['raw'].decode('utf-8', 'ignore')
-
-
+            print(' - '.join([client_address[0], request_time, request['header']['request-line']]))  
+            
             temp=request['header']['request-line'].strip('GET /')
             temp2=temp.split()
             sensorID=temp2[0]
@@ -59,12 +56,9 @@ def serve(host='0.0.0.0', port=5656, verbosity=1):
             raw_decoded += " \"IP\": \"" + format(sensorIP_dict[sensorID]) + "\" }"
             response = "HTTP/1.1 200 OK\nAccess-Control-Allow-Origin: *\n\n{}".format(raw_decoded)
                        
-            if verbosity == 2:
-                print("-"*10)
-                print(response)
-                print("-"*40)
             connection.sendall(response.encode())
             connection.close()
+            
     except KeyboardInterrupt:
         print("\nExiting...")
     finally:
