@@ -52,10 +52,14 @@ def serve(host='0.0.0.0', port=5656, verbosity=1):
             temp2=temp.split()
             sensorID=temp2[0]
 
-            raw_decoded = "{ \"location\": \"" + format(sensorLoc_dict[sensorID]) + "\","
-            raw_decoded += " \"IP\": \"" + format(sensorIP_dict[sensorID]) + "\" }"
+            if (len(sensorID) < 99) :
+                raw_decoded = "{ \"location\": \"" + format(sensorLoc_dict[sensorID]) + "\","
+                raw_decoded += " \"IP\": \"" + format(sensorIP_dict[sensorID]) + "\" }"
+            else:
+                raw_decoded = "error"
+                
             response = "HTTP/1.1 200 OK\nAccess-Control-Allow-Origin: *\n\n{}".format(raw_decoded)
-                       
+                      
             connection.sendall(response.encode())
             connection.close()
             
