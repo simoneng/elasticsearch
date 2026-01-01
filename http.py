@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Please rename this file to http2.py before running it
+
 import datetime
 import socket
 import sys
