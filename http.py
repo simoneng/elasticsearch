@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+# READ ME
 # Please rename this file to http2.py before running it
+# Download the file favicon.ico into the same directory/folder as this file
 
 import datetime
 import socket
